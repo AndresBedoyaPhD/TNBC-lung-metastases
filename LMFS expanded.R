@@ -4,9 +4,6 @@ library(conflicted)
 library(oligo)
 conflict_prefer_all("dplyr")
 
-setwd("C:/Users/idisb/Desktop/Andrés/02 - Projects/05 - DNAm organ specific/MethMice LMFS")
-
-
 Metadata.GSE2603 <- read.xlsx("TNBC Metadata GSE2603.xlsx")
 Metadata.GSE5327 <- read.xlsx("Metadata GSE5327.xlsx")
 Metadata.GSE12276 <- read.xlsx("TNBC Metadata GSE12276.xlsx")
@@ -39,26 +36,26 @@ table(Metadata.all$LMEvent)
 
 
 # GSE2603
-setwd("C:/Users/idisb/Desktop/Andrés/02 - Projects/05 - DNAm organ specific/MethMice LMFS/GSE2603 Data")
+setwd("GSE2603 Data")
 data.raw.2603 <- read.celfiles(list.celfiles(listGzipped = TRUE))
-sampleNames(data.raw.2603) <- gsub("\\.CEL\\.gz$", "", sampleNames(data.raw.2603)) # Remover ".CEL.gz" de los nombres de las muestras
+sampleNames(data.raw.2603) <- gsub("\\.CEL\\.gz$", "", sampleNames(data.raw.2603)) 
 data.raw.2603 <- data.raw.2603[, sampleNames(data.raw.2603) %in% Metadata.GSE2603$GEO_id]
 
 # GSE5327
-setwd("C:/Users/idisb/Desktop/Andrés/02 - Projects/05 - DNAm organ specific/MethMice LMFS/GSE5327 Data")
+setwd("GSE5327 Data")
 data.raw.5327 <- read.celfiles(list.celfiles(listGzipped = TRUE))
-sampleNames(data.raw.5327) <- gsub("\\.CEL\\.gz$", "", sampleNames(data.raw.5327)) # Remover ".CEL.gz" de los nombres de las muestras
+sampleNames(data.raw.5327) <- gsub("\\.CEL\\.gz$", "", sampleNames(data.raw.5327)) 
 
 # GSE 2034
-setwd("C:/Users/idisb/Desktop/Andrés/02 - Projects/05 - DNAm organ specific/MethMice LMFS/GSE2034 Data")
+setwd("GSE2034 Data")
 data.raw.2034 <- read.celfiles(list.celfiles(listGzipped = TRUE))
-sampleNames(data.raw.2034) <- gsub("\\.CEL\\.gz$", "", sampleNames(data.raw.2034)) # Remover ".CEL.gz" de los nombres de las muestras
+sampleNames(data.raw.2034) <- gsub("\\.CEL\\.gz$", "", sampleNames(data.raw.2034)) 
 data.raw.2034 <- data.raw.2034[, sampleNames(data.raw.2034) %in% Metadata.GSE2034$GEO.array]
 
 # GSE 12276
-setwd("C:/Users/idisb/Desktop/Andrés/02 - Projects/05 - DNAm organ specific/MethMice LMFS/GSE12276 Data")
+setwd("GSE12276 Data")
 data.raw.12276 <- read.celfiles(list.celfiles(listGzipped = TRUE))
-sampleNames(data.raw.12276) <- gsub("\\.CEL\\.gz$", "", sampleNames(data.raw.12276)) # Remover ".CEL.gz" de los nombres de las muestras
+sampleNames(data.raw.12276) <- gsub("\\.CEL\\.gz$", "", sampleNames(data.raw.12276))
 data.raw.12276 <- data.raw.12276[, sampleNames(data.raw.12276) %in% Metadata.GSE12276$GEO.array]
 
 
@@ -161,7 +158,7 @@ RNA.anot <- hgu133aALIAS2PROBE %>%
                as.data.frame(), by = "probe_id") %>%
   mutate(chromosome = paste0("chr", chromosome))
 
-Genes.interest <- read.xlsx("C:/Users/idisb/Desktop/Andrés/02 - Projects/05 - DNAm organ specific/Final Intersect MM, AURORA DNAm, RNAseq.xlsx")
+Genes.interest <- read.xlsx("Final Intersect MM, AURORA DNAm, RNAseq.xlsx")
 
 
 # Differential expression between LM2 and WT
